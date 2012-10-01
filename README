@@ -1,0 +1,8 @@
+A simple Bencoding decoder.
+Bencoding is used to store the meta data in .torrent files.
+
+This implementation is quite a bit cleaner and faster than
+the others I've seen.
+
+For details on the Bencoding format, see
+http://wiki.theory.org/BitTorrentSpecification#Bencoding
