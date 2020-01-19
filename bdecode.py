@@ -47,28 +47,3 @@ def _dechunk(data: bytes, i: int) -> typing.Tuple[_BType, int]:
         # read data
         return data[s : s + l], s + l
     raise ValueError("unknown data type")
-
-
-def _main() -> None:
-    import os
-    import sys
-
-    try:
-        fn = sys.argv[1]
-    except IndexError:
-        print(f"Usage: {sys.argv[0]} filename.torrent\n")
-        raise
-
-    with open(fn, "rb") as fo:
-        meta = bdecode(fo.read())
-        if not isinstance(meta, dict):
-            raise ValueError("invalid metadata")
-        info = meta[b"info"]
-        print(f"name: {info[b'name'].decode('utf-8')}")
-        print("files:")
-        for file in info[b"files"]:
-            print("\t", os.path.join(*file[b"path"]).decode("utf-8"))
-
-
-if __name__ == "__main__":
-    _main()
